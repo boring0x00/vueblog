@@ -73,14 +73,18 @@ public class AccountController {
         Assert.isNull(user, "用户已存在");
 
         User adduser = new User();
+
         adduser.setUsername(registerDto.getUsername());
         adduser.setPassword(SecureUtil.md5(registerDto.getPassword()));
+        adduser.setEmail(registerDto.getEmail());
+
         LocalDateTime date = LocalDateTime.now();
         adduser.setCreated(date);
 
         userService.save(adduser);
         return Result.succ(200, "注册成功", null);
     }
+
     @RequiresAuthentication
     @GetMapping("/logout")
     public Result logout() {

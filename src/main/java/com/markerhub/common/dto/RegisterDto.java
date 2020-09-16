@@ -12,4 +12,7 @@ public class RegisterDto implements Serializable {
 
     @NotBlank(message = "密码不能为空")
     private String password;
+
+    @NotBlank(message = "email不能为空")
+    private String email;
 }
