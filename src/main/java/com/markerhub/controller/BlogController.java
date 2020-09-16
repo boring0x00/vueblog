@@ -16,6 +16,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -47,6 +49,23 @@ public class BlogController {
 
         return Result.succ(blog);
     }
+
+    @GetMapping("/blog/type/{typename}")
+    public Result showBlogByType(@RequestParam(defaultValue = "1") Integer currentPage,@PathVariable(name = "typename") String typename) {
+        Page page = new Page(currentPage, 5);
+        IPage pageData = blogService.page(page, new QueryWrapper<Blog>().eq("type",typename).orderByDesc("created"));
+        return Result.succ(pageData);
+    }
+
+    @GetMapping("/blog/getTypes")
+    public Result getTypes(){
+        QueryWrapper<Blog> queryWrapper = new QueryWrapper<>();
+        queryWrapper.select("type").groupBy("type");
+        List<Map<String, Object>>  returnMap = blogService.listMaps(queryWrapper);
+        return Result.succ(200, "查询类别成功", returnMap);
+    }
+
+
 
     @RequiresAuthentication
     @PostMapping("/blog/edit")
