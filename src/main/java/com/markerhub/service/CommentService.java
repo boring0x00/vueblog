@@ -8,7 +8,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  *  服务类
  * </p>
  *
- * @author 关注公众号：MarkerHub
+ * @author climbteam
  * @since 2020-09-16
  */
 public interface CommentService extends IService<Comment> {

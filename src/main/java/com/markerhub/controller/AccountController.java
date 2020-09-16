@@ -25,6 +25,14 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.Date;
 
+/**
+ * <p>
+ *  前端控制器
+ * </p>
+ *
+ * @author climbteam
+ * @since 2020-05-25
+ */
 @RestController
 public class AccountController {
 
