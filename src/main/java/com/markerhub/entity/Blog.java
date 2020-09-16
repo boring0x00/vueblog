@@ -49,4 +49,8 @@ public class Blog implements Serializable {
 
     private String type;
 
+    private Integer commentsCount;
+
+    private Integer viewsCount;
+
 }
