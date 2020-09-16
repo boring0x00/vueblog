@@ -4,12 +4,14 @@ import cn.hutool.core.map.MapUtil;
 import cn.hutool.crypto.SecureUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.markerhub.common.dto.LoginDto;
+import com.markerhub.common.dto.RegisterDto;
 import com.markerhub.common.lang.Result;
 import com.markerhub.entity.User;
 import com.markerhub.service.UserService;
 import com.markerhub.util.JwtUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresAuthentication;
+import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
 import org.springframework.validation.annotation.Validated;
@@ -19,6 +21,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 @RestController
 public class AccountController {
@@ -53,6 +58,21 @@ public class AccountController {
         );
     }
 
+    @PostMapping("/register")
+    public Result register(@Validated @RequestBody RegisterDto registerDto, HttpServletResponse response) {
+
+        User user = userService.getOne(new QueryWrapper<User>().eq("username", registerDto.getUsername()));
+        Assert.isNull(user, "用户已存在");
+
+        User adduser = new User();
+        adduser.setUsername(registerDto.getUsername());
+        adduser.setPassword(SecureUtil.md5(registerDto.getPassword()));
+        LocalDateTime date = LocalDateTime.now();
+        adduser.setCreated(date);
+
+        userService.save(adduser);
+        return Result.succ(200, "注册成功", null);
+    }
     @RequiresAuthentication
     @GetMapping("/logout")
     public Result logout() {
