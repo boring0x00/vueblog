@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -27,7 +28,7 @@ public class CommentController {
 
     @PostMapping("/save")
     public Result leaveComment(@Validated @RequestBody Comment comment){
-        System.out.println(comment.toString());
+        comment.setCreated(LocalDateTime.now());
         commentService.save(comment);
         return Result.succ(null);
     }

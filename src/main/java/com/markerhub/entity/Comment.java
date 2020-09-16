@@ -4,6 +4,9 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
+import java.time.LocalDateTime;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -45,5 +48,9 @@ public class Comment implements Serializable {
      */
     private String detail;
 
-
+    /**
+     * 创建时间
+     */
+    @JsonFormat(pattern="yyyy-MM-dd")
+    private LocalDateTime created;
 }
