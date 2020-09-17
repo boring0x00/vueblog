@@ -34,9 +34,14 @@ public class Comment implements Serializable {
     private Long id;
 
     /**
-     * 作者  id
+     * 评论用户 id
      */
     private Long userId;
+
+    /**
+     * 评论用户名
+     */
+    private String username;
 
     /**
      * 文章  id
@@ -53,4 +58,14 @@ public class Comment implements Serializable {
      */
     @JsonFormat(pattern="yyyy-MM-dd")
     private LocalDateTime created;
+
+    /**
+     * 被回复评论用户 id
+     */
+    private Long toUserId;
+
+    /**
+     * 被回复评论用户名
+     */
+    private String toUsername;
 }
