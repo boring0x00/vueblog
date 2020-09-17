@@ -1,7 +1,6 @@
 package com.markerhub.common.dto;
 
 import lombok.Data;
-
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 

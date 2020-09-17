@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
  * </p>
  *
  * @author climbteam
- * @since 2020-05-25
+ * @since 2020-09-14
  */
 @RestController
 @RequestMapping("/user")

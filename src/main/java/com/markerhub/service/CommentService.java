@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * </p>
  *
  * @author climbteam
- * @since 2020-09-16
+ * @since 2020-09-14
  */
 public interface CommentService extends IService<Comment> {
 

@@ -25,7 +25,7 @@ import java.util.Map;
  * </p>
  *
  * @author climbteam
- * @since 2020-05-25
+ * @since 2020-09-14
  */
 @RestController
 public class BlogController {
@@ -33,6 +33,7 @@ public class BlogController {
     @Autowired
     BlogService blogService;
 
+    //博客列表获取  Get请求
     @GetMapping("/blogs")
     public Result list(@RequestParam(defaultValue = "1") Integer currentPage) {
 
@@ -42,6 +43,7 @@ public class BlogController {
         return Result.succ(pageData);
     }
 
+    //博客详情(传id)获取  Get请求
     @GetMapping("/blog/{id}")
     public Result detail(@PathVariable(name = "id") Long id) {
         Blog blog = blogService.getById(id);
@@ -50,6 +52,7 @@ public class BlogController {
         return Result.succ(blog);
     }
 
+    //博客分类列表(传类别名)获取  Get请求
     @GetMapping("/blog/type/{typename}")
     public Result showBlogByType(@RequestParam(defaultValue = "1") Integer currentPage,@PathVariable(name = "typename") String typename) {
         Page page = new Page(currentPage, 5);
@@ -57,6 +60,7 @@ public class BlogController {
         return Result.succ(pageData);
     }
 
+    //获取博客分类种类获取  Get请求
     @GetMapping("/blog/getTypes")
     public Result getTypes(){
         QueryWrapper<Blog> queryWrapper = new QueryWrapper<>();
@@ -65,8 +69,7 @@ public class BlogController {
         return Result.succ(200, "查询类别成功", returnMap);
     }
 
-
-
+    //博客编辑  Post请求
     @RequiresAuthentication
     @PostMapping("/blog/edit")
     public Result edit(@Validated @RequestBody Blog blog) {

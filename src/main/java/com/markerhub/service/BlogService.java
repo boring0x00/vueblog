@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * </p>
  *
  * @author climbteam
- * @since 2020-05-25
+ * @since 2020-09-14
  */
 public interface BlogService extends IService<Blog> {
 

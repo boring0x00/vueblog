@@ -26,6 +26,7 @@ public class CommentController {
     @Autowired
     private CommentService commentService;
 
+    //发表评论 Post请求
     @PostMapping("/save")
     public Result leaveComment(@Validated @RequestBody Comment comment){
         comment.setCreated(LocalDateTime.now());
@@ -33,6 +34,7 @@ public class CommentController {
         return Result.succ(null);
     }
 
+    //评论获取请求 Get请求
     @GetMapping("/{bid}")
     public Result showComment(@PathVariable("bid")Long blogId){
         QueryWrapper<Comment> queryWrapper=new QueryWrapper<>();
@@ -41,11 +43,13 @@ public class CommentController {
         return Result.succ(commentList);
     }
 
+    //评论删除  Delete请求(待完成)
     @DeleteMapping("/delete")
     public Result deleteComment(@RequestParam("cid") Long commentId,@RequestParam("uid")Long userId){
         return Result.succ(null);
     }
 
+    //评论修改 Put请求(待完成)
     @PutMapping("/editor")
     public Result editorComment(@Validated @RequestBody Comment comment){
 

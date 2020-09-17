@@ -31,7 +31,7 @@ import java.util.Date;
  * </p>
  *
  * @author climbteam
- * @since 2020-05-25
+ * @since 2020-09-14
  */
 @RestController
 public class AccountController {
@@ -42,6 +42,7 @@ public class AccountController {
     @Autowired
     JwtUtils jwtUtils;
 
+    //用户登录 Post请求
     @PostMapping("/login")
     public Result login(@Validated @RequestBody LoginDto loginDto, HttpServletResponse response) {
 
@@ -66,6 +67,7 @@ public class AccountController {
         );
     }
 
+    //用户注册 Post请求
     @PostMapping("/register")
     public Result register(@Validated @RequestBody RegisterDto registerDto, HttpServletResponse response) {
 
@@ -85,6 +87,7 @@ public class AccountController {
         return Result.succ(200, "注册成功", null);
     }
 
+    //用户登出 Get请求
     @RequiresAuthentication
     @GetMapping("/logout")
     public Result logout() {
